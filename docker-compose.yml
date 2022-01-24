@@ -1,0 +1,68 @@
+# Compose fileのバージョン指定
+version: '3'
+
+# どんなコンテナを立ち上げるか
+services:
+
+  # ---------------------------------
+  # EC-CUBEを動かすコンテナ
+  # ---------------------------------
+  app:
+    # どのポートを開いて繋ぐか。下記はコンテナの80番ポートを開いて、ホストの80番につなぐ
+    ports:
+      - "80:80"
+    # 先ほど作ったDockerfileを使って、コンテナをビルドするという指定
+    build: ./docker/app
+    # コンテナの名前を指定
+    container_name: eccube_app
+    # ローカルのディレクトリとコンテナ上のディレクトリのリンクを設定
+    # ./src は docker-composer.yml のディレクトリ直下にある src を設定している
+    # コンテナが作成されると src ディレクトリからコンテナの /var/www/html にアクセスすることができる
+    volumes:
+      - ./src:/var/www/html
+
+  # ----------------------------------
+  # MailCatcherを動かすコンテナ
+  # ----------------------------------
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - 1080:1080
+
+  # ----------------------------------
+  # Postgresを動かすコンテナ
+  # 参考：https://mebee.info/2020/12/04/post-24686/
+  # ----------------------------------
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: laraweb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      PGPASSWORD: password123
+      TZ: "Asia/Tokyo"
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+  # ----------------------------------
+  # pgadminを動かすコンテナ
+  # ----------------------------------
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - 81:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@laraweb.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+    depends_on:
+      - postgres
+
+volumes:
+  postgres:
+  pgadmin:
