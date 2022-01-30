@@ -2,7 +2,9 @@
 
 # EC-CUBE2 ローカル開発環境（PostgreSQL版）
 
-Docker（docker-compose）でLAMP環境（PHP/Apache/PostgreSQL）を構築し、EC-CUBE2 の新規プロジェクトをお手軽るに構築できます。
+Docker（docker-compose）でLAMP環境（PHP/Apache/PostgreSQL）を構築します。
+
+EC-CUBE2 の新規プロジェクトなどお手軽るに構築できます。
 
 データベースは MySQL ではなく PostgreSQL になります。
 
@@ -16,10 +18,6 @@ MySQL版は<a href="https://github.com/honjou/docker-eccube2" target="_blank">�
 
 ## 使い方
 
-EC-CUBE 2.17 本体は以下からダウンロードしてください。
-
-<a href="https://github.com/EC-CUBE/ec-cube2/releases/tag/eccube-2.17.2">EC-CUBE 2.17系（公式）</a>
-
 ```
 $ git clone https://github.com/honjou/docker-postgres .
 $ docker-compose build
@@ -30,10 +28,15 @@ $ docker-compose up -d
 ## ディレクトリ構造
 
 ```
-ec-cube2
-　┣ docker（docker本体）
-　┣ src（EC-CUBE2本体）
-    ┗ eccube2 ← ※EC-CUBE2.17 のデータを格納
+docker-postgres
+　┣ docker
+　┃　┗ app
+　┃　　 ┃  ┣ Dockerfile（※PDO PostgreSQL拡張ライブラリあり）
+　┃ 　　┃  ┗ php.ini
+　┃　   ┗ initdb 
+　┃       ┗ articles.sql（テスト用テーブル） 
+　┣ src（ドキュメントルート）
+    ┗ test.php ※Postgresの動作確認スクリプト
 　┣ .gitignore
 　┣ docker-compose.yml
 　┣ README.md
@@ -44,11 +47,11 @@ ec-cube2
 ```
 　┣ app（EC-CUBEを動かすコンテナ）
 　　　・Apache:2
-　　　・PHP:7.4
+　　　・PHP:5.6
 　　　・Composer:2.0.9
      ・Node.js:12
 　┣ db（MySQLを動かすコンテナ）
-　　　・PostgreSQL:latest
+　　　・PostgreSQL:12
 　┣ pgadmin（pgadminを動かすコンテナ）
 　　　・pgadmin:4
 　┣ mailcatcher（MailCatcherを動かすコンテナ）
