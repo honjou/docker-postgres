@@ -52,9 +52,9 @@ docker-postgres
 　　　・PHP:5.6
 　　　・Composer:2.0.9
      ・Node.js:12
-　┣ db（MySQLを動かすコンテナ）
-　　　・PostgreSQL:12
-　┣ pgadmin（pgadminを動かすコンテナ）
+　┣ db（PostgreSQLを動かすコンテナ）
+　　　・PostgreSQL:9.3
+　┣ pgadmin（pgAdminを動かすコンテナ）
 　　　・pgadmin:4
 　┣ mailcatcher（MailCatcherを動かすコンテナ）
 ```

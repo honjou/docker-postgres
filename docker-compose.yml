@@ -31,7 +31,7 @@ services:
   # ----------------------------------
   myapp-db:
     container_name: myapp-db
-    image: postgres:12
+    image: postgres:9.3
     environment:
       POSTGRES_DB: sampledb
       POSTGRES_USER: sample-user

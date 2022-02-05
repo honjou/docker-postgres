@@ -1,7 +1,12 @@
 <?php
-// ユーザー名やパスワードなどは、
-// docker-compose.yml にあわせて適宜変更してください
+/**
+ PostgreSQL接続テストスクリプト
+ ユーザー名やパスワードなどは、docker-compose.yml にあわせて適宜変更してください
+*/
+
+// PostgreSQLのDSN
 $dsn = 'pgsql:dbname=sampledb;host=myapp-db';
+//
 $db = new PDO($dsn, 'sample-user', 'samplepassword');
 
 // ariclesテーブルを呼び出して出力
