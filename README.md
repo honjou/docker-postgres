@@ -23,6 +23,8 @@ $ git clone https://github.com/honjou/docker-postgres .
 $ docker-compose build
 $ docker-compose up -d
 ```
+<a href="http://localhost/test.php">http://localhost/test.php</a> にアクセスして表示されていれば、DB接続OK。
+
 <p>詳細は<a href="https://laraweb.net/surrounding/10114/" target="_blank">こちら</a></p>
 
 ## ディレクトリ構造
