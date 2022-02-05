@@ -30,6 +30,7 @@ services:
   # Postgresを動かすコンテナ
   # ----------------------------------
   myapp-db:
+    container_name: myapp-db
     image: postgres:12
     environment:
       POSTGRES_DB: sampledb
