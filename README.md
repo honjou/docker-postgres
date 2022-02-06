@@ -27,21 +27,19 @@ $ docker-compose up -d
 
 <p>詳細は<a href="https://laraweb.net/surrounding/10114/" target="_blank">こちら</a></p>
 
-## ディレクトリ構造
+## ファイル構成
 
 ```
 docker-postgres
-　┣ docker
-　┃　┗ app
-　┃　　 ┃  ┣ Dockerfile（※PDO PostgreSQL拡張ライブラリあり）
-　┃ 　　┃  ┗ php.ini
-　┃　   ┗ initdb 
-　┃       ┗ articles.sql（テスト用テーブル） 
-　┣ src（ドキュメントルート）
-    ┗ test.php ※Postgresの動作確認スクリプト
-　┣ .gitignore
-　┣ docker-compose.yml
-　┣ README.md
+┣ docker/
+┃    ┣ app
+┃    ┃┣ Dockerfile（※PDO PostgreSQL拡張ライブラリ設定済み）
+┃    ┃┗ php.ini（※PDO PostgreSQL拡張ライブラリ設定済み）
+┃    ┗ initdb
+┃    　 ┗ articles.sql（動作確認用DBテーブル）
+┣ src/ （ソースコード格納用ディレクトリ）
+┃    ┗ test.php（PostgreSQL接続テストスクリプト）
+┗ docker-compose.yml
 ```
 
 ## コンテナ構成
