@@ -40,7 +40,10 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - "./docker/initdb:/docker-entrypoint-initdb.d"
+      # SAMPLE用 DBテーブル
+      - ./docker/initdb:/docker-entrypoint-initdb.d
+      # PostgreSQLの永続化（利用する場合は上のSAMPLEをコメントアウトする）
+      #- /tmp/postgresql-data:/var/lib/postgresql/data:z
 
   # ----------------------------------
   # pgAdminを動かすコンテナ
